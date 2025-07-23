@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5f59eeb930c3446b93788ede4acbc16a" Name="Diagram1">
+        <EntityTypeShape EntityType="Monk15Model.Campaign" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Community" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.CommunityLogo" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.CommunityMember" Width="1.5" PointX="8.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Influencer" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Invite" Width="1.5" PointX="6" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.KarmaProperty" Width="1.5" PointX="5.25" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Karma" Width="1.5" PointX="3" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.NFTVerification" Width="1.5" PointX="3" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.OAuth_Providers" Width="1.5" PointX="3" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.PollOption" Width="1.5" PointX="12.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Quest" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.QuizQuestion" Width="1.5" PointX="12.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Role" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Session" Width="1.5" PointX="3" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.SocialAccount" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.SocialStat" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Sprint" Width="1.5" PointX="3" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.Task" Width="1.5" PointX="10.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.TaskType" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.UserProfile" Width="1.5" PointX="3" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.User" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.UserTask" Width="1.5" PointX="12.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.UserXP" Width="1.5" PointX="3" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Monk15Model.WalletAuth" Width="1.5" PointX="3" PointY="41" IsExpanded="true" />
+        <AssociationConnector Association="Monk15Model.FK_Campaignsinflu_18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Communiticreat_4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Communitycommu_5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Communitycommu_5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Questscommunit_59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_SocialAcccommu_1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Communityuser__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_SocialStainflu_151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Invitesrole_id_46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Invitessender__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_KarmaPropkarma_60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Karmascreated__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Taskskarma_id_6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_NFTVerifiuser__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_OAuth_Prouser__05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_PollOptiotask__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Tasksquest_id_6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_QuizQuesttask__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Sessionsuser_i_0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_SocialAccuser__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_Sprintscreated_7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_UserTaskstask__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_UserProfiuser__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_UserTasksuser__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_UserXPuser_id_0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="Monk15Model.FK_WalletAutuser__02FC7413" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

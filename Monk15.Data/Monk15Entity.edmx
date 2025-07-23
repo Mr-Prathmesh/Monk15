@@ -1,0 +1,1801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Monk15Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Campaigns">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="influencer_id" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="150" />
+          <Property Name="tags" Type="varchar(max)" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Communities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="website" Type="varchar" MaxLength="255" />
+          <Property Name="blockchain" Type="varchar" MaxLength="50" />
+          <Property Name="logo_url" Type="varchar(max)" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CommunityLogos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="community_id" Type="int" />
+          <Property Name="logo_url" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CommunityMembers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="community_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="role" Type="varchar" MaxLength="20" />
+          <Property Name="joined_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Influencers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="handle" Type="varchar" MaxLength="100" />
+          <Property Name="categories" Type="varchar(max)" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Invites">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sender_id" Type="int" />
+          <Property Name="invitee_email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="role_id" Type="int" />
+          <Property Name="token" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="KarmaProperties">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="karma_id" Type="int" />
+          <Property Name="key_name" Type="varchar" MaxLength="100" />
+          <Property Name="value" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Karmas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NFTVerifications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="wallet_address" Type="varchar" MaxLength="100" />
+          <Property Name="token_id" Type="varchar" MaxLength="100" />
+          <Property Name="verified" Type="bit" />
+          <Property Name="verified_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OAuth_Providers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="provider_name" Type="varchar" MaxLength="50" />
+          <Property Name="provider_id" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PollOptions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="task_id" Type="int" />
+          <Property Name="option_text" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Quests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="community_id" Type="int" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="karma_points" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="QuizQuestions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="task_id" Type="int" />
+          <Property Name="question_text" Type="varchar(max)" />
+          <Property Name="correct_answer" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="login_method" Type="varchar" MaxLength="50" />
+          <Property Name="ip_address" Type="varchar" MaxLength="45" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SocialAccounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="community_id" Type="int" />
+          <Property Name="provider" Type="varchar" MaxLength="50" />
+          <Property Name="provider_id" Type="varchar" MaxLength="255" />
+          <Property Name="account_name" Type="varchar" MaxLength="100" />
+          <Property Name="profile_url" Type="varchar(max)" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SocialStats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="influencer_id" Type="int" />
+          <Property Name="platform" Type="varchar" MaxLength="50" />
+          <Property Name="followers_count" Type="varchar" MaxLength="20" />
+          <Property Name="engagement_rate" Type="varchar" MaxLength="10" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Sprints">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="created_by" Type="int" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="karma_id" Type="int" />
+          <Property Name="quest_id" Type="int" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="platform" Type="varchar" MaxLength="20" />
+          <Property Name="icon_url" Type="varchar" MaxLength="255" />
+          <Property Name="points" Type="int" />
+          <Property Name="reward" Type="int" />
+          <Property Name="cooldown_seconds" Type="int" />
+          <Property Name="recurrence" Type="varchar" MaxLength="20" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TaskTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="category" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserProfiles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="full_name" Type="varchar" MaxLength="100" />
+          <Property Name="profile_picture" Type="varchar(max)" />
+          <Property Name="last_login" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password_hash" Type="varchar" MaxLength="255" />
+          <Property Name="role" Type="varchar" MaxLength="20" />
+          <Property Name="remember_token" Type="varchar" MaxLength="255" />
+          <Property Name="agreed_terms" Type="bit" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserTasks">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="task_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="submission_text" Type="varchar(max)" />
+          <Property Name="file_url" Type="varchar" MaxLength="255" />
+          <Property Name="poll_option_selected" Type="int" />
+          <Property Name="quiz_answer" Type="varchar(max)" />
+          <Property Name="submitted_at" Type="datetime" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="UserXPs">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="total_xp" Type="int" />
+          <Property Name="last_updated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WalletAuths">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="wallet_address" Type="varchar" MaxLength="100" />
+          <Property Name="provider" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Campaignsinflu_18EBB532">
+          <End Role="Influencers" Type="Self.Influencers" Multiplicity="0..1" />
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Influencers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Campaigns">
+              <PropertyRef Name="influencer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communiticreat_4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Communities" Type="Self.Communities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Communities">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communitycommu_5070F446">
+          <End Role="Communities" Type="Self.Communities" Multiplicity="0..1" />
+          <End Role="CommunityMembers" Type="Self.CommunityMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CommunityMembers">
+              <PropertyRef Name="community_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communitycommu_5441852A">
+          <End Role="Communities" Type="Self.Communities" Multiplicity="0..1" />
+          <End Role="CommunityLogos" Type="Self.CommunityLogos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CommunityLogos">
+              <PropertyRef Name="community_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communityuser__5165187F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="CommunityMembers" Type="Self.CommunityMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CommunityMembers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invitesrole_id_46E78A0C">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Invites" Type="Self.Invites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Invites">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invitessender__45F365D3">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Invites" Type="Self.Invites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Invites">
+              <PropertyRef Name="sender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KarmaPropkarma_60A75C0F">
+          <End Role="Karmas" Type="Self.Karmas" Multiplicity="0..1" />
+          <End Role="KarmaProperties" Type="Self.KarmaProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karmas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="KarmaProperties">
+              <PropertyRef Name="karma_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Karmascreated__5DCAEF64">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Karmas" Type="Self.Karmas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Karmas">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NFTVerifiuser__7F2BE32F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="NFTVerifications" Type="Self.NFTVerifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NFTVerifications">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OAuth_Prouser__05D8E0BE">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="OAuth_Providers" Type="Self.OAuth_Providers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OAuth_Providers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollOptiotask__75A278F5">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
+          <End Role="PollOptions" Type="Self.PollOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PollOptions">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questscommunit_59FA5E80">
+          <End Role="Communities" Type="Self.Communities" Multiplicity="0..1" />
+          <End Role="Quests" Type="Self.Quests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Quests">
+              <PropertyRef Name="community_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuesttask__787EE5A0">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
+          <End Role="QuizQuestions" Type="Self.QuizQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="QuizQuestions">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessionsuser_i_0E6E26BF">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialAcccommu_1DB06A4F">
+          <End Role="Communities" Type="Self.Communities" Multiplicity="0..1" />
+          <End Role="SocialAccounts" Type="Self.SocialAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SocialAccounts">
+              <PropertyRef Name="community_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialAccuser__1CBC4616">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="SocialAccounts" Type="Self.SocialAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SocialAccounts">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialStainflu_151B244E">
+          <End Role="Influencers" Type="Self.Influencers" Multiplicity="0..1" />
+          <End Role="SocialStats" Type="Self.SocialStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Influencers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SocialStats">
+              <PropertyRef Name="influencer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sprintscreated_7B5B524B">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sprints" Type="Self.Sprints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sprints">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taskskarma_id_6B24EA82">
+          <End Role="Karmas" Type="Self.Karmas" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karmas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="karma_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasksquest_id_6C190EBB">
+          <End Role="Quests" Type="Self.Quests" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="quest_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfiuser__3D5E1FD2">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserProfiles">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTaskstask__71D1E811">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
+          <End Role="UserTasks" Type="Self.UserTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserTasks">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTasksuser__72C60C4A">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserTasks" Type="Self.UserTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserTasks">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserXPuser_id_0A9D95DB">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserXPs" Type="Self.UserXPs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserXPs">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WalletAutuser__02FC7413">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="WalletAuths" Type="Self.WalletAuths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WalletAuths">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Monk15ModelStoreContainer">
+          <EntitySet Name="Campaigns" EntityType="Self.Campaigns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Communities" EntityType="Self.Communities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommunityLogos" EntityType="Self.CommunityLogos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommunityMembers" EntityType="Self.CommunityMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Influencers" EntityType="Self.Influencers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invites" EntityType="Self.Invites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KarmaProperties" EntityType="Self.KarmaProperties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Karmas" EntityType="Self.Karmas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NFTVerifications" EntityType="Self.NFTVerifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OAuth_Providers" EntityType="Self.OAuth_Providers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PollOptions" EntityType="Self.PollOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quests" EntityType="Self.Quests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuizQuestions" EntityType="Self.QuizQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialAccounts" EntityType="Self.SocialAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialStats" EntityType="Self.SocialStats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sprints" EntityType="Self.Sprints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskTypes" EntityType="Self.TaskTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTasks" EntityType="Self.UserTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserXPs" EntityType="Self.UserXPs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WalletAuths" EntityType="Self.WalletAuths" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Campaignsinflu_18EBB532" Association="Self.FK_Campaignsinflu_18EBB532">
+            <End Role="Influencers" EntitySet="Influencers" />
+            <End Role="Campaigns" EntitySet="Campaigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communiticreat_4AB81AF0" Association="Self.FK_Communiticreat_4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Communities" EntitySet="Communities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communitycommu_5070F446" Association="Self.FK_Communitycommu_5070F446">
+            <End Role="Communities" EntitySet="Communities" />
+            <End Role="CommunityMembers" EntitySet="CommunityMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communitycommu_5441852A" Association="Self.FK_Communitycommu_5441852A">
+            <End Role="Communities" EntitySet="Communities" />
+            <End Role="CommunityLogos" EntitySet="CommunityLogos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communityuser__5165187F" Association="Self.FK_Communityuser__5165187F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CommunityMembers" EntitySet="CommunityMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invitesrole_id_46E78A0C" Association="Self.FK_Invitesrole_id_46E78A0C">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Invites" EntitySet="Invites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invitessender__45F365D3" Association="Self.FK_Invitessender__45F365D3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Invites" EntitySet="Invites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KarmaPropkarma_60A75C0F" Association="Self.FK_KarmaPropkarma_60A75C0F">
+            <End Role="Karmas" EntitySet="Karmas" />
+            <End Role="KarmaProperties" EntitySet="KarmaProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Karmascreated__5DCAEF64" Association="Self.FK_Karmascreated__5DCAEF64">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Karmas" EntitySet="Karmas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NFTVerifiuser__7F2BE32F" Association="Self.FK_NFTVerifiuser__7F2BE32F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="NFTVerifications" EntitySet="NFTVerifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OAuth_Prouser__05D8E0BE" Association="Self.FK_OAuth_Prouser__05D8E0BE">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OAuth_Providers" EntitySet="OAuth_Providers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollOptiotask__75A278F5" Association="Self.FK_PollOptiotask__75A278F5">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="PollOptions" EntitySet="PollOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questscommunit_59FA5E80" Association="Self.FK_Questscommunit_59FA5E80">
+            <End Role="Communities" EntitySet="Communities" />
+            <End Role="Quests" EntitySet="Quests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuesttask__787EE5A0" Association="Self.FK_QuizQuesttask__787EE5A0">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessionsuser_i_0E6E26BF" Association="Self.FK_Sessionsuser_i_0E6E26BF">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialAcccommu_1DB06A4F" Association="Self.FK_SocialAcccommu_1DB06A4F">
+            <End Role="Communities" EntitySet="Communities" />
+            <End Role="SocialAccounts" EntitySet="SocialAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialAccuser__1CBC4616" Association="Self.FK_SocialAccuser__1CBC4616">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SocialAccounts" EntitySet="SocialAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialStainflu_151B244E" Association="Self.FK_SocialStainflu_151B244E">
+            <End Role="Influencers" EntitySet="Influencers" />
+            <End Role="SocialStats" EntitySet="SocialStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sprintscreated_7B5B524B" Association="Self.FK_Sprintscreated_7B5B524B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sprints" EntitySet="Sprints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taskskarma_id_6B24EA82" Association="Self.FK_Taskskarma_id_6B24EA82">
+            <End Role="Karmas" EntitySet="Karmas" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasksquest_id_6C190EBB" Association="Self.FK_Tasksquest_id_6C190EBB">
+            <End Role="Quests" EntitySet="Quests" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfiuser__3D5E1FD2" Association="Self.FK_UserProfiuser__3D5E1FD2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTaskstask__71D1E811" Association="Self.FK_UserTaskstask__71D1E811">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="UserTasks" EntitySet="UserTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTasksuser__72C60C4A" Association="Self.FK_UserTasksuser__72C60C4A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserTasks" EntitySet="UserTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserXPuser_id_0A9D95DB" Association="Self.FK_UserXPuser_id_0A9D95DB">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserXPs" EntitySet="UserXPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WalletAutuser__02FC7413" Association="Self.FK_WalletAutuser__02FC7413">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="WalletAuths" EntitySet="WalletAuths" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Monk15Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="influencer_id" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Influencer" Relationship="Self.FK_Campaignsinflu_18EBB532" FromRole="Campaigns" ToRole="Influencers" />
+        </EntityType>
+        <EntityType Name="Community">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="blockchain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="logo_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Communiticreat_4AB81AF0" FromRole="Communities" ToRole="Users" />
+          <NavigationProperty Name="CommunityMembers" Relationship="Self.FK_Communitycommu_5070F446" FromRole="Communities" ToRole="CommunityMembers" />
+          <NavigationProperty Name="CommunityLogos" Relationship="Self.FK_Communitycommu_5441852A" FromRole="Communities" ToRole="CommunityLogos" />
+          <NavigationProperty Name="Quests" Relationship="Self.FK_Questscommunit_59FA5E80" FromRole="Communities" ToRole="Quests" />
+          <NavigationProperty Name="SocialAccounts" Relationship="Self.FK_SocialAcccommu_1DB06A4F" FromRole="Communities" ToRole="SocialAccounts" />
+        </EntityType>
+        <EntityType Name="CommunityLogo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="community_id" Type="Int32" />
+          <Property Name="logo_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Community" Relationship="Self.FK_Communitycommu_5441852A" FromRole="CommunityLogos" ToRole="Communities" />
+        </EntityType>
+        <EntityType Name="CommunityMember">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="community_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="joined_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Community" Relationship="Self.FK_Communitycommu_5070F446" FromRole="CommunityMembers" ToRole="Communities" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Communityuser__5165187F" FromRole="CommunityMembers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Influencer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="handle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="categories" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Campaigns" Relationship="Self.FK_Campaignsinflu_18EBB532" FromRole="Influencers" ToRole="Campaigns" />
+          <NavigationProperty Name="SocialStats" Relationship="Self.FK_SocialStainflu_151B244E" FromRole="Influencers" ToRole="SocialStats" />
+        </EntityType>
+        <EntityType Name="Invite">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sender_id" Type="Int32" />
+          <Property Name="invitee_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_id" Type="Int32" />
+          <Property Name="token" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Invitesrole_id_46E78A0C" FromRole="Invites" ToRole="Roles" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Invitessender__45F365D3" FromRole="Invites" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="KarmaProperty">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="karma_id" Type="Int32" />
+          <Property Name="key_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Karma" Relationship="Self.FK_KarmaPropkarma_60A75C0F" FromRole="KarmaProperties" ToRole="Karmas" />
+        </EntityType>
+        <EntityType Name="Karma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="KarmaProperties" Relationship="Self.FK_KarmaPropkarma_60A75C0F" FromRole="Karmas" ToRole="KarmaProperties" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Karmascreated__5DCAEF64" FromRole="Karmas" ToRole="Users" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Taskskarma_id_6B24EA82" FromRole="Karmas" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="NFTVerification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="wallet_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="token_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="verified" Type="Boolean" />
+          <Property Name="verified_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_NFTVerifiuser__7F2BE32F" FromRole="NFTVerifications" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="OAuth_Providers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="provider_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="provider_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_OAuth_Prouser__05D8E0BE" FromRole="OAuth_Providers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="PollOption">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="Int32" />
+          <Property Name="option_text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_PollOptiotask__75A278F5" FromRole="PollOptions" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="Quest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="community_id" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="karma_points" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Community" Relationship="Self.FK_Questscommunit_59FA5E80" FromRole="Quests" ToRole="Communities" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasksquest_id_6C190EBB" FromRole="Quests" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="QuizQuestion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="Int32" />
+          <Property Name="question_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="correct_answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_QuizQuesttask__787EE5A0" FromRole="QuizQuestions" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Invites" Relationship="Self.FK_Invitesrole_id_46E78A0C" FromRole="Roles" ToRole="Invites" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="login_method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Sessionsuser_i_0E6E26BF" FromRole="Sessions" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="SocialAccount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="community_id" Type="Int32" />
+          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="provider_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="account_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="profile_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Community" Relationship="Self.FK_SocialAcccommu_1DB06A4F" FromRole="SocialAccounts" ToRole="Communities" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SocialAccuser__1CBC4616" FromRole="SocialAccounts" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="SocialStat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="influencer_id" Type="Int32" />
+          <Property Name="platform" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="followers_count" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="engagement_rate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Influencer" Relationship="Self.FK_SocialStainflu_151B244E" FromRole="SocialStats" ToRole="Influencers" />
+        </EntityType>
+        <EntityType Name="Sprint">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="created_by" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Sprintscreated_7B5B524B" FromRole="Sprints" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="karma_id" Type="Int32" />
+          <Property Name="quest_id" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="platform" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="icon_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="points" Type="Int32" />
+          <Property Name="reward" Type="Int32" />
+          <Property Name="cooldown_seconds" Type="Int32" />
+          <Property Name="recurrence" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Karma" Relationship="Self.FK_Taskskarma_id_6B24EA82" FromRole="Tasks" ToRole="Karmas" />
+          <NavigationProperty Name="PollOptions" Relationship="Self.FK_PollOptiotask__75A278F5" FromRole="Tasks" ToRole="PollOptions" />
+          <NavigationProperty Name="Quest" Relationship="Self.FK_Tasksquest_id_6C190EBB" FromRole="Tasks" ToRole="Quests" />
+          <NavigationProperty Name="QuizQuestions" Relationship="Self.FK_QuizQuesttask__787EE5A0" FromRole="Tasks" ToRole="QuizQuestions" />
+          <NavigationProperty Name="UserTasks" Relationship="Self.FK_UserTaskstask__71D1E811" FromRole="Tasks" ToRole="UserTasks" />
+        </EntityType>
+        <EntityType Name="TaskType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="profile_picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="last_login" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserProfiuser__3D5E1FD2" FromRole="UserProfiles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_hash" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="remember_token" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="agreed_terms" Type="Boolean" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Communities" Relationship="Self.FK_Communiticreat_4AB81AF0" FromRole="Users" ToRole="Communities" />
+          <NavigationProperty Name="CommunityMembers" Relationship="Self.FK_Communityuser__5165187F" FromRole="Users" ToRole="CommunityMembers" />
+          <NavigationProperty Name="Invites" Relationship="Self.FK_Invitessender__45F365D3" FromRole="Users" ToRole="Invites" />
+          <NavigationProperty Name="Karmas" Relationship="Self.FK_Karmascreated__5DCAEF64" FromRole="Users" ToRole="Karmas" />
+          <NavigationProperty Name="NFTVerifications" Relationship="Self.FK_NFTVerifiuser__7F2BE32F" FromRole="Users" ToRole="NFTVerifications" />
+          <NavigationProperty Name="OAuth_Providers" Relationship="Self.FK_OAuth_Prouser__05D8E0BE" FromRole="Users" ToRole="OAuth_Providers" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessionsuser_i_0E6E26BF" FromRole="Users" ToRole="Sessions" />
+          <NavigationProperty Name="SocialAccounts" Relationship="Self.FK_SocialAccuser__1CBC4616" FromRole="Users" ToRole="SocialAccounts" />
+          <NavigationProperty Name="Sprints" Relationship="Self.FK_Sprintscreated_7B5B524B" FromRole="Users" ToRole="Sprints" />
+          <NavigationProperty Name="UserProfiles" Relationship="Self.FK_UserProfiuser__3D5E1FD2" FromRole="Users" ToRole="UserProfiles" />
+          <NavigationProperty Name="UserTasks" Relationship="Self.FK_UserTasksuser__72C60C4A" FromRole="Users" ToRole="UserTasks" />
+          <NavigationProperty Name="UserXP" Relationship="Self.FK_UserXPuser_id_0A9D95DB" FromRole="Users" ToRole="UserXPs" />
+          <NavigationProperty Name="WalletAuths" Relationship="Self.FK_WalletAutuser__02FC7413" FromRole="Users" ToRole="WalletAuths" />
+        </EntityType>
+        <EntityType Name="UserTask">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="submission_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="file_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="poll_option_selected" Type="Int32" />
+          <Property Name="quiz_answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="submitted_at" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_UserTaskstask__71D1E811" FromRole="UserTasks" ToRole="Tasks" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserTasksuser__72C60C4A" FromRole="UserTasks" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="UserXP">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="total_xp" Type="Int32" />
+          <Property Name="last_updated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserXPuser_id_0A9D95DB" FromRole="UserXPs" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="WalletAuth">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="wallet_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_WalletAutuser__02FC7413" FromRole="WalletAuths" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Campaignsinflu_18EBB532">
+          <End Role="Influencers" Type="Self.Influencer" Multiplicity="0..1" />
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Influencers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Campaigns">
+              <PropertyRef Name="influencer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communiticreat_4AB81AF0">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Communities" Type="Self.Community" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Communities">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communitycommu_5070F446">
+          <End Role="Communities" Type="Self.Community" Multiplicity="0..1" />
+          <End Role="CommunityMembers" Type="Self.CommunityMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CommunityMembers">
+              <PropertyRef Name="community_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communitycommu_5441852A">
+          <End Role="Communities" Type="Self.Community" Multiplicity="0..1" />
+          <End Role="CommunityLogos" Type="Self.CommunityLogo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CommunityLogos">
+              <PropertyRef Name="community_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questscommunit_59FA5E80">
+          <End Role="Communities" Type="Self.Community" Multiplicity="0..1" />
+          <End Role="Quests" Type="Self.Quest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Quests">
+              <PropertyRef Name="community_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialAcccommu_1DB06A4F">
+          <End Role="Communities" Type="Self.Community" Multiplicity="0..1" />
+          <End Role="SocialAccounts" Type="Self.SocialAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SocialAccounts">
+              <PropertyRef Name="community_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communityuser__5165187F">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="CommunityMembers" Type="Self.CommunityMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CommunityMembers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialStainflu_151B244E">
+          <End Role="Influencers" Type="Self.Influencer" Multiplicity="0..1" />
+          <End Role="SocialStats" Type="Self.SocialStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Influencers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SocialStats">
+              <PropertyRef Name="influencer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invitesrole_id_46E78A0C">
+          <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Invites" Type="Self.Invite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Invites">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invitessender__45F365D3">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Invites" Type="Self.Invite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Invites">
+              <PropertyRef Name="sender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KarmaPropkarma_60A75C0F">
+          <End Role="Karmas" Type="Self.Karma" Multiplicity="0..1" />
+          <End Role="KarmaProperties" Type="Self.KarmaProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karmas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="KarmaProperties">
+              <PropertyRef Name="karma_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Karmascreated__5DCAEF64">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Karmas" Type="Self.Karma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Karmas">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taskskarma_id_6B24EA82">
+          <End Role="Karmas" Type="Self.Karma" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karmas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="karma_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NFTVerifiuser__7F2BE32F">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="NFTVerifications" Type="Self.NFTVerification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NFTVerifications">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OAuth_Prouser__05D8E0BE">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="OAuth_Providers" Type="Self.OAuth_Providers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OAuth_Providers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollOptiotask__75A278F5">
+          <End Role="Tasks" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="PollOptions" Type="Self.PollOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PollOptions">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasksquest_id_6C190EBB">
+          <End Role="Quests" Type="Self.Quest" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="quest_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuesttask__787EE5A0">
+          <End Role="Tasks" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="QuizQuestions" Type="Self.QuizQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="QuizQuestions">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessionsuser_i_0E6E26BF">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Sessions" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialAccuser__1CBC4616">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="SocialAccounts" Type="Self.SocialAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SocialAccounts">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sprintscreated_7B5B524B">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Sprints" Type="Self.Sprint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sprints">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTaskstask__71D1E811">
+          <End Role="Tasks" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="UserTasks" Type="Self.UserTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserTasks">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfiuser__3D5E1FD2">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserProfiles" Type="Self.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserProfiles">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTasksuser__72C60C4A">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserTasks" Type="Self.UserTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserTasks">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserXPuser_id_0A9D95DB">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UserXPs" Type="Self.UserXP" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserXPs">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WalletAutuser__02FC7413">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="WalletAuths" Type="Self.WalletAuth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WalletAuths">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Monk15Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Campaigns" EntityType="Self.Campaign" />
+          <EntitySet Name="Communities" EntityType="Self.Community" />
+          <EntitySet Name="CommunityLogos" EntityType="Self.CommunityLogo" />
+          <EntitySet Name="CommunityMembers" EntityType="Self.CommunityMember" />
+          <EntitySet Name="Influencers" EntityType="Self.Influencer" />
+          <EntitySet Name="Invites" EntityType="Self.Invite" />
+          <EntitySet Name="KarmaProperties" EntityType="Self.KarmaProperty" />
+          <EntitySet Name="Karmas" EntityType="Self.Karma" />
+          <EntitySet Name="NFTVerifications" EntityType="Self.NFTVerification" />
+          <EntitySet Name="OAuth_Providers" EntityType="Self.OAuth_Providers" />
+          <EntitySet Name="PollOptions" EntityType="Self.PollOption" />
+          <EntitySet Name="Quests" EntityType="Self.Quest" />
+          <EntitySet Name="QuizQuestions" EntityType="Self.QuizQuestion" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Sessions" EntityType="Self.Session" />
+          <EntitySet Name="SocialAccounts" EntityType="Self.SocialAccount" />
+          <EntitySet Name="SocialStats" EntityType="Self.SocialStat" />
+          <EntitySet Name="Sprints" EntityType="Self.Sprint" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="TaskTypes" EntityType="Self.TaskType" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTasks" EntityType="Self.UserTask" />
+          <EntitySet Name="UserXPs" EntityType="Self.UserXP" />
+          <EntitySet Name="WalletAuths" EntityType="Self.WalletAuth" />
+          <AssociationSet Name="FK_Campaignsinflu_18EBB532" Association="Self.FK_Campaignsinflu_18EBB532">
+            <End Role="Influencers" EntitySet="Influencers" />
+            <End Role="Campaigns" EntitySet="Campaigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communiticreat_4AB81AF0" Association="Self.FK_Communiticreat_4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Communities" EntitySet="Communities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communitycommu_5070F446" Association="Self.FK_Communitycommu_5070F446">
+            <End Role="Communities" EntitySet="Communities" />
+            <End Role="CommunityMembers" EntitySet="CommunityMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communitycommu_5441852A" Association="Self.FK_Communitycommu_5441852A">
+            <End Role="Communities" EntitySet="Communities" />
+            <End Role="CommunityLogos" EntitySet="CommunityLogos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questscommunit_59FA5E80" Association="Self.FK_Questscommunit_59FA5E80">
+            <End Role="Communities" EntitySet="Communities" />
+            <End Role="Quests" EntitySet="Quests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialAcccommu_1DB06A4F" Association="Self.FK_SocialAcccommu_1DB06A4F">
+            <End Role="Communities" EntitySet="Communities" />
+            <End Role="SocialAccounts" EntitySet="SocialAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communityuser__5165187F" Association="Self.FK_Communityuser__5165187F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CommunityMembers" EntitySet="CommunityMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialStainflu_151B244E" Association="Self.FK_SocialStainflu_151B244E">
+            <End Role="Influencers" EntitySet="Influencers" />
+            <End Role="SocialStats" EntitySet="SocialStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invitesrole_id_46E78A0C" Association="Self.FK_Invitesrole_id_46E78A0C">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Invites" EntitySet="Invites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invitessender__45F365D3" Association="Self.FK_Invitessender__45F365D3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Invites" EntitySet="Invites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KarmaPropkarma_60A75C0F" Association="Self.FK_KarmaPropkarma_60A75C0F">
+            <End Role="Karmas" EntitySet="Karmas" />
+            <End Role="KarmaProperties" EntitySet="KarmaProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Karmascreated__5DCAEF64" Association="Self.FK_Karmascreated__5DCAEF64">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Karmas" EntitySet="Karmas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taskskarma_id_6B24EA82" Association="Self.FK_Taskskarma_id_6B24EA82">
+            <End Role="Karmas" EntitySet="Karmas" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NFTVerifiuser__7F2BE32F" Association="Self.FK_NFTVerifiuser__7F2BE32F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="NFTVerifications" EntitySet="NFTVerifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OAuth_Prouser__05D8E0BE" Association="Self.FK_OAuth_Prouser__05D8E0BE">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OAuth_Providers" EntitySet="OAuth_Providers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollOptiotask__75A278F5" Association="Self.FK_PollOptiotask__75A278F5">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="PollOptions" EntitySet="PollOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasksquest_id_6C190EBB" Association="Self.FK_Tasksquest_id_6C190EBB">
+            <End Role="Quests" EntitySet="Quests" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuesttask__787EE5A0" Association="Self.FK_QuizQuesttask__787EE5A0">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessionsuser_i_0E6E26BF" Association="Self.FK_Sessionsuser_i_0E6E26BF">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialAccuser__1CBC4616" Association="Self.FK_SocialAccuser__1CBC4616">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SocialAccounts" EntitySet="SocialAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sprintscreated_7B5B524B" Association="Self.FK_Sprintscreated_7B5B524B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sprints" EntitySet="Sprints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTaskstask__71D1E811" Association="Self.FK_UserTaskstask__71D1E811">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="UserTasks" EntitySet="UserTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfiuser__3D5E1FD2" Association="Self.FK_UserProfiuser__3D5E1FD2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTasksuser__72C60C4A" Association="Self.FK_UserTasksuser__72C60C4A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserTasks" EntitySet="UserTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserXPuser_id_0A9D95DB" Association="Self.FK_UserXPuser_id_0A9D95DB">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserXPs" EntitySet="UserXPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WalletAutuser__02FC7413" Association="Self.FK_WalletAutuser__02FC7413">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="WalletAuths" EntitySet="WalletAuths" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Monk15ModelStoreContainer" CdmEntityContainer="Monk15Entities">
+          <EntitySetMapping Name="Campaigns">
+            <EntityTypeMapping TypeName="Monk15Model.Campaign">
+              <MappingFragment StoreEntitySet="Campaigns">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="influencer_id" ColumnName="influencer_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="tags" ColumnName="tags" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Communities">
+            <EntityTypeMapping TypeName="Monk15Model.Community">
+              <MappingFragment StoreEntitySet="Communities">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="blockchain" ColumnName="blockchain" />
+                <ScalarProperty Name="logo_url" ColumnName="logo_url" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommunityLogos">
+            <EntityTypeMapping TypeName="Monk15Model.CommunityLogo">
+              <MappingFragment StoreEntitySet="CommunityLogos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="community_id" ColumnName="community_id" />
+                <ScalarProperty Name="logo_url" ColumnName="logo_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommunityMembers">
+            <EntityTypeMapping TypeName="Monk15Model.CommunityMember">
+              <MappingFragment StoreEntitySet="CommunityMembers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="community_id" ColumnName="community_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="joined_at" ColumnName="joined_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Influencers">
+            <EntityTypeMapping TypeName="Monk15Model.Influencer">
+              <MappingFragment StoreEntitySet="Influencers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="handle" ColumnName="handle" />
+                <ScalarProperty Name="categories" ColumnName="categories" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invites">
+            <EntityTypeMapping TypeName="Monk15Model.Invite">
+              <MappingFragment StoreEntitySet="Invites">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+                <ScalarProperty Name="invitee_email" ColumnName="invitee_email" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KarmaProperties">
+            <EntityTypeMapping TypeName="Monk15Model.KarmaProperty">
+              <MappingFragment StoreEntitySet="KarmaProperties">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="karma_id" ColumnName="karma_id" />
+                <ScalarProperty Name="key_name" ColumnName="key_name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Karmas">
+            <EntityTypeMapping TypeName="Monk15Model.Karma">
+              <MappingFragment StoreEntitySet="Karmas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NFTVerifications">
+            <EntityTypeMapping TypeName="Monk15Model.NFTVerification">
+              <MappingFragment StoreEntitySet="NFTVerifications">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="wallet_address" ColumnName="wallet_address" />
+                <ScalarProperty Name="token_id" ColumnName="token_id" />
+                <ScalarProperty Name="verified" ColumnName="verified" />
+                <ScalarProperty Name="verified_at" ColumnName="verified_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OAuth_Providers">
+            <EntityTypeMapping TypeName="Monk15Model.OAuth_Providers">
+              <MappingFragment StoreEntitySet="OAuth_Providers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="provider_name" ColumnName="provider_name" />
+                <ScalarProperty Name="provider_id" ColumnName="provider_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PollOptions">
+            <EntityTypeMapping TypeName="Monk15Model.PollOption">
+              <MappingFragment StoreEntitySet="PollOptions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="task_id" ColumnName="task_id" />
+                <ScalarProperty Name="option_text" ColumnName="option_text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quests">
+            <EntityTypeMapping TypeName="Monk15Model.Quest">
+              <MappingFragment StoreEntitySet="Quests">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="community_id" ColumnName="community_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="karma_points" ColumnName="karma_points" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizQuestions">
+            <EntityTypeMapping TypeName="Monk15Model.QuizQuestion">
+              <MappingFragment StoreEntitySet="QuizQuestions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="task_id" ColumnName="task_id" />
+                <ScalarProperty Name="question_text" ColumnName="question_text" />
+                <ScalarProperty Name="correct_answer" ColumnName="correct_answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Monk15Model.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="Monk15Model.Session">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="login_method" ColumnName="login_method" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocialAccounts">
+            <EntityTypeMapping TypeName="Monk15Model.SocialAccount">
+              <MappingFragment StoreEntitySet="SocialAccounts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="community_id" ColumnName="community_id" />
+                <ScalarProperty Name="provider" ColumnName="provider" />
+                <ScalarProperty Name="provider_id" ColumnName="provider_id" />
+                <ScalarProperty Name="account_name" ColumnName="account_name" />
+                <ScalarProperty Name="profile_url" ColumnName="profile_url" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocialStats">
+            <EntityTypeMapping TypeName="Monk15Model.SocialStat">
+              <MappingFragment StoreEntitySet="SocialStats">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="influencer_id" ColumnName="influencer_id" />
+                <ScalarProperty Name="platform" ColumnName="platform" />
+                <ScalarProperty Name="followers_count" ColumnName="followers_count" />
+                <ScalarProperty Name="engagement_rate" ColumnName="engagement_rate" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sprints">
+            <EntityTypeMapping TypeName="Monk15Model.Sprint">
+              <MappingFragment StoreEntitySet="Sprints">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="Monk15Model.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="karma_id" ColumnName="karma_id" />
+                <ScalarProperty Name="quest_id" ColumnName="quest_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="platform" ColumnName="platform" />
+                <ScalarProperty Name="icon_url" ColumnName="icon_url" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="reward" ColumnName="reward" />
+                <ScalarProperty Name="cooldown_seconds" ColumnName="cooldown_seconds" />
+                <ScalarProperty Name="recurrence" ColumnName="recurrence" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskTypes">
+            <EntityTypeMapping TypeName="Monk15Model.TaskType">
+              <MappingFragment StoreEntitySet="TaskTypes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="Monk15Model.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfiles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="profile_picture" ColumnName="profile_picture" />
+                <ScalarProperty Name="last_login" ColumnName="last_login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Monk15Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="remember_token" ColumnName="remember_token" />
+                <ScalarProperty Name="agreed_terms" ColumnName="agreed_terms" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTasks">
+            <EntityTypeMapping TypeName="Monk15Model.UserTask">
+              <MappingFragment StoreEntitySet="UserTasks">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="task_id" ColumnName="task_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="submission_text" ColumnName="submission_text" />
+                <ScalarProperty Name="file_url" ColumnName="file_url" />
+                <ScalarProperty Name="poll_option_selected" ColumnName="poll_option_selected" />
+                <ScalarProperty Name="quiz_answer" ColumnName="quiz_answer" />
+                <ScalarProperty Name="submitted_at" ColumnName="submitted_at" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserXPs">
+            <EntityTypeMapping TypeName="Monk15Model.UserXP">
+              <MappingFragment StoreEntitySet="UserXPs">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="total_xp" ColumnName="total_xp" />
+                <ScalarProperty Name="last_updated" ColumnName="last_updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WalletAuths">
+            <EntityTypeMapping TypeName="Monk15Model.WalletAuth">
+              <MappingFragment StoreEntitySet="WalletAuths">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="wallet_address" ColumnName="wallet_address" />
+                <ScalarProperty Name="provider" ColumnName="provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
